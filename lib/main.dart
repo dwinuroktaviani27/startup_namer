@@ -7,22 +7,35 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    final wordPair = WordPair.random(); // Add this line.
     return MaterialApp(
       title: 'Welcome to Flutter',
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Welcome to Flutter'),
+          title: Text('Welcome to Flutter'),
         ),
-        body: Center(
-          // Drop the const, and
-          //child: Text('Hello World'),        // Replace this text...
-          child: Text(wordPair.asPascalCase), // With this text.
+        body: const Center(
+          // Add the const
+          //child: Text(wordPair.asPascalCase), // REPLACE with...
+          child: RandomWords(), // ...this line
         ),
       ),
     );
+  }
+}
+
+class RandomWords extends StatefulWidget {
+  const RandomWords({Key? key}) : super(key: key);
+
+  @override
+  State<RandomWords> createState() => _RandomWordsState();
+}
+
+class _RandomWordsState extends State<RandomWords> {
+  @override
+  Widget build(BuildContext context) {
+    final wordPair = WordPair.random();
+    return Text(wordPair.asPascalCase);
   }
 }
